@@ -3,18 +3,20 @@ import FormInput from "../components/FormInput";
 import { useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { useGlobalContext } from "../context/GlobalContext";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const { setUserInfo } = useGlobalContext();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
       const { data: response } = await axios.post(
-        "http://localhost:5000/login",
+        "http://localhost:5000/api/auth/login",
         {
           username,
           password,
@@ -23,6 +25,7 @@ const LoginPage = () => {
       );
       console.log(response, "response");
       if (response.id) {
+        setUserInfo(response);
         setRedirect(true);
       }
     } catch (error) {
