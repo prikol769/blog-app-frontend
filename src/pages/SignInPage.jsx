@@ -2,13 +2,13 @@ import { Button } from "@material-tailwind/react";
 import FormInput from "../components/FormInput";
 import { useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 
-const LoginPage = () => {
+const SignInPage = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [redirect, setRedirect] = useState(false);
   const { setUserInfo } = useGlobalContext();
 
   const handleLogin = async (e) => {
@@ -16,7 +16,7 @@ const LoginPage = () => {
 
     try {
       const { data: response } = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "http://localhost:5000/api/auth/signin",
         {
           username,
           password,
@@ -26,16 +26,12 @@ const LoginPage = () => {
       console.log(response, "response");
       if (response.id) {
         setUserInfo(response);
-        setRedirect(true);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  if (redirect) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <div className="flex items-center justify-center">
@@ -53,10 +49,10 @@ const LoginPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit">Sign In</Button>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignInPage;

@@ -1,9 +1,11 @@
 import { Button } from "@material-tailwind/react";
 import FormInput from "../components/FormInput";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const RegisterPage = () => {
+const SignUpPage = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +14,7 @@ const RegisterPage = () => {
 
     try {
       const { data: response } = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "http://localhost:5000/api/auth/signup",
         {
           username,
           password,
@@ -22,6 +24,7 @@ const RegisterPage = () => {
     } catch (error) {
       console.log(error);
     }
+    navigate("/sign-in");
   };
 
   return (
@@ -40,10 +43,10 @@ const RegisterPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit">Register</Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
 };
 
-export default RegisterPage;
+export default SignUpPage;

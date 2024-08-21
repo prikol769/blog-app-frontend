@@ -23,9 +23,13 @@ const Header = () => {
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/logout", {
-        withCredentials: true,
-      });
+      await axios.post(
+        "http://localhost:5000/api/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
       setUserInfo(null);
     } catch (error) {
       console.log(error);
@@ -44,8 +48,8 @@ const Header = () => {
         )}
         {!userInfo?.username && (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/sign-in">Sign In</Link>
+            <Link to="/sign-up">Sign Up</Link>
           </>
         )}
       </nav>
