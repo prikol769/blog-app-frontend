@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
+import { Button } from "@material-tailwind/react";
+import { AvatarWithUserDropdown } from "./AvatarWithUserDropdown";
 
 const Header = () => {
   const { setUserInfo, userInfo } = useGlobalContext();
@@ -37,19 +39,27 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-between p-6">
-      <Link to="/">Blog</Link>
-      <nav className="flex gap-2">
+    <header className="flex justify-between items-center p-6">
+      <Link className="text-lg font-semibold" to="/">
+        <img src="Logo.png" />
+      </Link>
+      <nav className="flex gap-2 items-center ">
         {userInfo?.username && (
           <>
-            <Link to="/create">Create new post</Link>
-            <a onClick={logout}>Logout</a>
+            <Link to="/create">
+              <Button variant="text"> Create new post</Button>
+            </Link>
+            <AvatarWithUserDropdown onLogout={logout} />
           </>
         )}
         {!userInfo?.username && (
           <>
-            <Link to="/sign-in">Sign In</Link>
-            <Link to="/sign-up">Sign Up</Link>
+            <Link to="/sign-in">
+              <Button variant="text">Sign In</Button>
+            </Link>
+            <Link to="/sign-up">
+              <Button>Join</Button>
+            </Link>
           </>
         )}
       </nav>
