@@ -2,13 +2,15 @@ import { Button } from "@material-tailwind/react";
 import FormInput from "../components/FormInput";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
+import AlertCustomCloseIcon from "../components/AlertCustomCloseIcon";
 
 const SignInPage = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { setUserInfo } = useGlobalContext();
 
   const handleLogin = async (e) => {
@@ -30,12 +32,21 @@ const SignInPage = () => {
       }
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <form onSubmit={handleLogin} className="flex flex-col gap-10 w-[500px]">
+    <div className="flex items-center justify-center h-[100vh]">
+      {error && <AlertCustomCloseIcon message={error} setError={setError}/>}
+      <form
+        onSubmit={handleLogin}
+        className="flex flex-col gap-8 w-[500px] mb-[60px]"
+      >
+        <div className="text-center">
+          <p className=" text-5xl font-extrabold mb-5">Welcome Back</p>
+          <p className="mt-[-10px]">Enter your credentials to login</p>
+        </div>
         <FormInput
           placeholder="Username"
           label="Username"
@@ -49,7 +60,15 @@ const SignInPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit">Sign In</Button>
+        <Button className="mt-6 h-[52px] text-md" type="submit">
+          Sign In
+        </Button>
+        <p className="text-center">
+          New to MK Blog?{" "}
+          <Link className="text-black font-semibold" to="/sign-up">
+            Join now
+          </Link>
+        </p>
       </form>
     </div>
   );

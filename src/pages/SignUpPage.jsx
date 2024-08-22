@@ -1,13 +1,15 @@
 import { Button } from "@material-tailwind/react";
 import FormInput from "../components/FormInput";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import AlertCustomCloseIcon from "../components/AlertCustomCloseIcon";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,15 +23,27 @@ const SignUpPage = () => {
         }
       );
       console.log(response, "response");
+      setError("Sign Up successful!");
+      setTimeout(() => {
+        navigate("/sign-in");
+      }, 3000);
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
-    // navigate("/sign-in");
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-10 w-[500px]">
+    <div className="flex items-center justify-center h-[100vh]">
+      {error && <AlertCustomCloseIcon message={error} setError={setError} />}
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-8 w-[500px] mb-[60px]"
+      >
+        <div className="text-center">
+          <p className=" text-5xl font-extrabold mb-5">Sign Up</p>
+          <p className="mt-[-10px]">Create your account</p>
+        </div>
         <FormInput
           placeholder="Username"
           label="Username"
@@ -43,7 +57,15 @@ const SignUpPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit">Sign Up</Button>
+        <Button className="mt-6 h-[52px] text-md" type="submit">
+          Sign Up
+        </Button>
+        <p className="text-center">
+          Already have an account?{" "}
+          <Link className="text-black font-semibold" to="/sign-in">
+            Sign In
+          </Link>
+        </p>
       </form>
     </div>
   );
