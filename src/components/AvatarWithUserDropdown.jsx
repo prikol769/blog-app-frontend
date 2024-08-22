@@ -54,14 +54,12 @@ export function AvatarWithUserDropdown({ onLogout }) {
           color="blue-gray"
           className="flex items-center rounded-full p-0"
         >
-          <div
-            className="flex items-center justify-center  
-        h-12 w-12 rounded-full border-2 border-black"
+          <Button
+            variant="outlined"
+            className="h-12 w-12 text-xl font-semibold text-white rounded-full bg-black flex items-center justify-center "
           >
-            <span className="text-xl font-semibold text-black">
-              {userInfo.username[0]}
-            </span>
-          </div>
+            {userInfo.username[0]}
+          </Button>
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
