@@ -41,12 +41,12 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center py-6">
       <Link className="text-lg font-semibold" to="/">
-        <img src="Logo.png" />
+        <img src="/Logo.png" />
       </Link>
       <nav className="flex gap-2 items-center ">
         {userInfo?.username && (
           <>
-            <Link to="/create">
+            <Link to="/create-post">
               <Button variant="text"> Create new post</Button>
             </Link>
             <AvatarWithUserDropdown onLogout={logout} />
