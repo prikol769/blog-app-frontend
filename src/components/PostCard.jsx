@@ -3,34 +3,55 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  Typography,
   Button,
 } from "@material-tailwind/react";
 import Badge from "./Badge";
+import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils/dateFormat";
 
-export function PostCard() {
+export function PostCard({ post }) {
+  const navigate = useNavigate();
+  const { category, title, summary, _id, createdAt } = post;
+
+  const handleClick = () => {
+    navigate(`/post/${_id}`);
+  };
+
+  const upperCaseTitle = title.charAt(0).toUpperCase() + title.slice(1);
   return (
-    <Card className="pt-10 max-w-[600px] w-auto min-w-96 shadow-[0px_4px_6px_1px_rgb(0,0,0,0.1)]">
+    <Card className="pt-10 max-w-[600px] w-auto min-w-96 shadow-[0px_4px_6px_1px_rgb(0,0,0,0.1)] min-h-[480px] max-h-[480px] justify-between">
       <CardHeader color="blue-gray" className="relative h-56">
         <img
           src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
           alt="card-image"
         />
       </CardHeader>
-      <CardBody>
-        <Badge />
-        <Typography variant="h5" color="blue-gray" className="mb-2 mt-5">
-          UI/UX Review Check
-        </Typography>
-        <p className="line-clamp-2">
-          The place is close to Barceloneta Beach and bus stop just 2 min by
-          walk and near to &quot;Naviglio&quot; where you can enjoy the main
-          night life in Barcelona.
-        </p>
+      <CardBody className="">
+        <Badge category={category} />
+        <h5
+          color="blue-gray"
+          className="mb-2 mt-5 line-clamp-1 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-inherit"
+        >
+          {upperCaseTitle}
+        </h5>
+        <p className="line-clamp-2">{summary}</p>
       </CardBody>
+      <hr className="mb-5" />
       <CardFooter className="pt-0 flex items-center justify-between">
-        <Button>Read More</Button>
-        <p className="text-[#97989F] text-sm">August 28, 2024</p>
+        <div className="flex justify-between items-center w-full">
+          <div className="flex items-center gap-2">
+            <img className="h-8 w-8" src="/hero-avatar.png" alt="hero-avatar" />
+            <div>
+              <p className="text-[#97989F] text-xs font-semibold">
+                Mykyta Krumalenko
+              </p>
+              <p className="text-[#97989F] text-xs">{formatDate(createdAt)}</p>
+            </div>
+          </div>
+          <Button className="w-[50%]" onClick={handleClick}>
+            Read More
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
