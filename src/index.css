@@ -8,3 +8,13 @@
   width: 100%;
   position: absolute;
 }
+
+.ql-toolbar {
+  border: none !important;
+}
+
+.ql-container {
+  border: none !important;
+  border-top: 1px solid rgb(209 213 219) !important;
+  min-height: 300px;
+}
