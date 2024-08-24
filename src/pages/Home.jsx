@@ -1,10 +1,27 @@
 import { Button } from "@material-tailwind/react";
 import { PostCard } from "../components/PostCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
-  const arr = Array(10)
-    .fill()
-    .map((e, i) => i + 1);
+  const [posts, setPosts] = useState([]);
+  console.log(posts);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { data: response } = await axios(
+          "http://localhost:5000/api/posts"
+        );
+        console.log(response, "response");
+        setPosts(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <div>
       <section>
@@ -28,8 +45,8 @@ const Home = () => {
       </section>
       <section className="mt-[150px]">
         <div className="grid  grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-8">
-          {arr.map((card, index) => (
-            <PostCard key={index} />
+          {posts?.posts?.map((post) => (
+            <PostCard key={post._id} post={post} />
           ))}
         </div>
         <div className="w-full flex">
