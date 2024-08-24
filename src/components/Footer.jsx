@@ -66,7 +66,7 @@ const Footer = () => {
                 value={email}
                 onChange={onChange}
                 placeholder="Your Email"
-                icon={<EnvelopeIcon className="mt-2" />}
+                icon={<EnvelopeIcon />}
                 className="h-[48px] !border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
                 labelProps={{
                   className: "hidden",
@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
         <div className="flex justify-between items-center w-full border-t-[1px] border-[#DCDDDF] py-8">
           <div className=" ">
-            <img src="Logo.png" />
+            <img src="/Logo.png" />
           </div>
           <div className="flex gap-8 text-[#3B3C4A]">
             <Link to="#">Terms of Use</Link>
