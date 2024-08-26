@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,4 +19,105 @@
   border: none !important;
   border-top: 1px solid rgb(209 213 219) !important;
   min-height: 300px;
+  font-family: "Source Sans 3", sans-serif;
+  letter-spacing: 0.2px;
+  font-size: 20px;
+  line-height: 32px;
+  color: #242424;
+}
+
+.content {
+  font-family: "Source Sans 3", sans-serif;
+  letter-spacing: 0.2px;
+  font-size: 20px;
+  line-height: 32px;
+  color: #242424;
+}
+
+.content p,
+.ql-container p {
+  margin-top: 24px;
+}
+
+.content a,
+.ql-container a {
+  text-decoration: underline;
+  color: #242424;
+}
+
+.ql-container h1,
+.ql-container h2,
+.ql-container h3,
+.ql-container h4,
+.ql-container h5 {
+  font-weight: 800;
+  margin-top: 48px;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5 {
+  font-weight: 800;
+  margin-top: 48px;
+}
+
+.content h1,
+.ql-container h1 {
+  font-size: 28px !important;
+}
+.content h2,
+.ql-container h2 {
+  font-size: 26px !important;
+}
+.content h3,
+.ql-container h3 {
+  font-size: 24px !important;
+}
+.content h4,
+.ql-container h4 {
+  font-size: 22px !important;
+}
+.content h5,
+.ql-container h5 {
+  font-size: 20px !important;
+}
+
+.content h1 + p {
+  margin-top: 16px;
+}
+
+.content ol,
+ul {
+  margin-top: 24px;
+}
+
+.content ol > li {
+  margin-top: 14px;
+  margin-left: 45px;
+  list-style-type: decimal;
+}
+
+.content ul > li {
+  margin-top: 14px;
+  margin-left: 45px;
+  list-style-type: circle;
+}
+
+.content blockquote {
+  margin: 14px;
+}
+
+pre,
+.ql-snow .ql-editor pre.ql-syntax {
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 14px;
+  border: 1px solid rgb(229, 229, 229);
+  padding: 32px;
+  overflow-x: auto;
+  border-radius: 4px;
+  background-color: #23241f;
+  color: #f8f8f2;
 }
