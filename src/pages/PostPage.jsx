@@ -27,11 +27,11 @@ const PostPage = () => {
   return (
     <div className="pt-8 pb-[80px] max-w-[1000px] mx-auto">
       <Badge category={post.category} />
-      <h1 className="text-[#181A2A] text-4xl font-semibold mt-4 mb-5">
+      <h1 className="text-[#181A2A] text-4xl font-semibold mt-4 mb-5 leading-[52px]">
         {post.title}
       </h1>
       <div className="flex items-center gap-6">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <img className="h-8 w-8" src="/hero-avatar.png" alt="hero-avatar" />
           <p className="text-[#97989F] text-sm font-semibold">{post.author}</p>
         </div>
