@@ -159,7 +159,9 @@ const CreatePostPage = () => {
             onChange={(newValue) => setContent(newValue)}
             className="!border !rounded-lg !border-gray-300  bg-white text-gray-900 shadow-lg shadow-gray-900/5 "
           />
-          <Button type="submit">Create Post</Button>
+          <Button className="z-10" type="submit">
+            Create Post
+          </Button>
         </form>
         <div className="max-w-[430px]">
           {previewCard && (
