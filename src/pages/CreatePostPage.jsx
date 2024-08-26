@@ -82,7 +82,7 @@ const CreatePostPage = () => {
   };
 
   return (
-    <div className="mb-10">
+    <div className="mb-10 relative">
       <div className="py-4 flex items-center justify-end">
         <ButtonGroup variant="outlined">
           <Button
@@ -157,7 +157,7 @@ const CreatePostPage = () => {
             formats={formats}
             value={content}
             onChange={(newValue) => setContent(newValue)}
-            className="!border !rounded-lg !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 "
+            className="!border !rounded-lg !border-gray-300  bg-white text-gray-900 shadow-lg shadow-gray-900/5 "
           />
           <Button type="submit">Create Post</Button>
         </form>
