@@ -7,8 +7,12 @@ import AlertCustomCloseIcon from "../components/AlertCustomCloseIcon";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [userData, setUserData] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    email: "",
+  });
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -18,8 +22,7 @@ const SignUpPage = () => {
       const { data: response } = await axios.post(
         "http://localhost:5000/api/auth/signup",
         {
-          username,
-          password,
+          ...userData,
         }
       );
       console.log(response, "response");
@@ -38,24 +41,38 @@ const SignUpPage = () => {
       {error && <AlertCustomCloseIcon message={error} setError={setError} />}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-8 w-[500px] mb-[60px]"
+        className="flex flex-col gap-7 w-[500px] mb-[60px]"
       >
         <div className="text-center">
           <p className=" text-5xl font-extrabold mb-5">Sign Up</p>
           <p className="mt-[-10px]">Create your account</p>
         </div>
         <FormInput
-          placeholder="Username"
-          label="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          label="Full name"
+          value={userData.fullName}
+          onChange={(e) =>
+            setUserData({ ...userData, fullName: e.target.value })
+          }
         />
         <FormInput
-          placeholder="Password"
+          label="Email"
+          value={userData.email}
+          onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+        />
+        <FormInput
+          label="Username"
+          value={userData.username}
+          onChange={(e) =>
+            setUserData({ ...userData, username: e.target.value })
+          }
+        />
+        <FormInput
           type="password"
           label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={userData.password}
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
         />
         <Button className="mt-6 h-[52px] text-md" type="submit">
           Sign Up
