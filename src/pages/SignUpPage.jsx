@@ -49,6 +49,7 @@ const SignUpPage = () => {
         </div>
         <FormInput
           label="Full name"
+          placeholder="Enter your full name"
           value={userData.fullName}
           onChange={(e) =>
             setUserData({ ...userData, fullName: e.target.value })
@@ -56,11 +57,13 @@ const SignUpPage = () => {
         />
         <FormInput
           label="Email"
+          placeholder="Enter your email address"
           value={userData.email}
           onChange={(e) => setUserData({ ...userData, email: e.target.value })}
         />
         <FormInput
           label="Username"
+          placeholder="Set your username"
           value={userData.username}
           onChange={(e) =>
             setUserData({ ...userData, username: e.target.value })
@@ -69,6 +72,7 @@ const SignUpPage = () => {
         <FormInput
           type="password"
           label="Password"
+          placeholder="Set your password"
           value={userData.password}
           onChange={(e) =>
             setUserData({ ...userData, password: e.target.value })
