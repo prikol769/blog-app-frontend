@@ -38,7 +38,7 @@ const SignInPage = () => {
 
   return (
     <div className="flex items-center justify-center h-[100vh]">
-      {error && <AlertCustomCloseIcon message={error} setError={setError}/>}
+      {error && <AlertCustomCloseIcon message={error} setError={setError} />}
       <form
         onSubmit={handleLogin}
         className="flex flex-col gap-8 w-[500px] mb-[60px]"
@@ -48,13 +48,13 @@ const SignInPage = () => {
           <p className="mt-[-10px]">Enter your credentials to login</p>
         </div>
         <FormInput
-          placeholder="Username"
+          placeholder="Enter your username"
           label="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <FormInput
-          placeholder="Password"
+          placeholder="Enter your password"
           type="password"
           label="Password"
           value={password}
