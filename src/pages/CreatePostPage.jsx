@@ -98,7 +98,9 @@ const CreatePostPage = () => {
           </Button>
         </ButtonGroup>
       </div>
-      <div className={`flex ${previewCard ? "gap-12" : ""}`}>
+      <div
+        className={`flex flex-col lg:flex-row ${previewCard ? "gap-12" : ""} `}
+      >
         <form className="flex flex-col gap-4 flex-1" onSubmit={createNewPost}>
           <div className="flex gap-6">
             <FormInput
