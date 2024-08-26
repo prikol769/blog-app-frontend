@@ -12,8 +12,18 @@ import { useState } from "react";
 import axios from "axios";
 import { PreviwPostCard } from "../components/PreviwPostCard";
 import { useGlobalContext } from "../context/GlobalContext";
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import css from "highlight.js/lib/languages/css";
+import "highlight.js/styles/monokai-sublime.css";
+
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("css", css);
 
 const modules = {
+  syntax: {
+    highlight: (text) => hljs.highlightAuto(text).value,
+  },
   toolbar: [
     [{ header: [1, 2, 3, 4, 5, false] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
@@ -23,7 +33,7 @@ const modules = {
       { indent: "-1" },
       { indent: "+1" },
     ],
-    ["link"],
+    ["link", "code-block"],
     ["clean"],
   ],
 };
@@ -39,6 +49,7 @@ const formats = [
   "bullet",
   "indent",
   "link",
+  "code-block",
 ];
 
 const CreatePostPage = () => {
