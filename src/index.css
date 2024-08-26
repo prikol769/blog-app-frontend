@@ -84,7 +84,8 @@
   font-size: 20px !important;
 }
 
-.content h1 + p {
+.content h1 + p,
+.ql-container h1 + p {
   margin-top: 16px;
 }
 
@@ -93,10 +94,22 @@ ul {
   margin-top: 24px;
 }
 
+.ql-container ol,
+ul {
+  margin-top: 24px;
+  padding: 0 !important;
+}
+
 .content ol > li {
   margin-top: 14px;
   margin-left: 45px;
   list-style-type: decimal;
+}
+
+.ql-container ol > li {
+  margin-top: 14px;
+  margin-left: 45px;
+  padding: 0 !important;
 }
 
 .content ul > li {
@@ -105,7 +118,14 @@ ul {
   list-style-type: circle;
 }
 
-.content blockquote {
+.ql-container ul > li {
+  margin-top: 14px;
+  margin-left: 45px;
+  padding: 0 !important;
+}
+
+.content blockquote,
+.ql-container blockquote {
   margin: 14px;
 }
 
