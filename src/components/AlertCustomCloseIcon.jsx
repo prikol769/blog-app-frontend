@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Alert, Button } from "@material-tailwind/react";
 
 function Icon() {
@@ -43,7 +43,7 @@ export default function AlertCustomCloseIcon({ message, setError }) {
             setError("");
           }}
         >
-          Close
+          x
         </Button>
       }
     >
