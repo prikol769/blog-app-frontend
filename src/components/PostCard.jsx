@@ -26,7 +26,7 @@ export function PostCard({ post }) {
           alt="card-image"
         />
       </CardHeader>
-      <CardBody className="">
+      <CardBody className="min-h-[175px]">
         <Badge category={category} />
         <h5
           color="blue-gray"
