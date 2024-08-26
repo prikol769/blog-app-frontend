@@ -44,7 +44,7 @@ const Header = () => {
         <img src="/Logo.png" />
       </Link>
       <nav className="flex gap-2 items-center ">
-        {userInfo?.username && (
+        {userInfo?.fullName && (
           <>
             <Link to="/create-post">
               <Button variant="text"> Create new post</Button>
@@ -52,7 +52,7 @@ const Header = () => {
             <AvatarWithUserDropdown onLogout={logout} />
           </>
         )}
-        {!userInfo?.username && (
+        {!userInfo?.fullName && (
           <>
             <Link to="/sign-in">
               <Button variant="text">Sign In</Button>

@@ -58,7 +58,7 @@ export function AvatarWithUserDropdown({ onLogout }) {
             variant="outlined"
             className="h-12 w-12 text-xl font-semibold text-white rounded-full bg-black flex items-center justify-center "
           >
-            {userInfo.username[0]}
+            {userInfo.fullName[0]}
           </Button>
         </Button>
       </MenuHandler>
