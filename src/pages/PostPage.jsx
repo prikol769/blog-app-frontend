@@ -3,16 +3,26 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Badge from "../components/Badge";
 import { formatDate } from "../utils/dateFormat";
+import { useGlobalContext } from "../context/GlobalContext";
+import { Button } from "@material-tailwind/react";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { Modal } from "../components/Modal";
 
 const PostPage = () => {
   const { id } = useParams();
+  const { userInfo } = useGlobalContext();
   const [post, setPost] = useState([]);
-  console.log(post);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteResponse, setDeleteResponse] = useState(null);
+
+  const isPostCreator = userInfo.id === post.userId;
+
+  console.log(userInfo, "userInfo");
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { data: response } = await axios(
+        const { data: response } = await axios.get(
           `http://localhost:5000/api/posts/${id}`
         );
         console.log(response, "response");
@@ -24,8 +34,46 @@ const PostPage = () => {
     fetchPost();
   }, []);
 
+  const handleDeletePost = async () => {
+    try {
+      const { data: response } = await axios.delete(
+        `http://localhost:5000/api/posts/${id}/${post.userId}`,
+        { withCredentials: true }
+      );
+      console.log(response, "response");
+      setDeleteResponse(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="pt-8 pb-[80px] max-w-[1000px] mx-auto">
+    <div className="pt-8 pb-[80px] max-w-[1000px] mx-auto relative">
+      {isPostCreator && (
+        <div className="flex gap-4 pb-4 justify-end">
+          <Button size="md" className="flex items-center gap-3 pl-4">
+            <PencilSquareIcon className="w-4 h-4" />
+            Edit
+          </Button>
+          <Button
+            size="md"
+            color="red"
+            className="flex items-center gap-3 pl-4"
+            onClick={() => setDeleteModalOpen(true)}
+          >
+            <TrashIcon className="w-4 h-4" /> Delete
+          </Button>
+          {
+            <Modal
+              open={deleteModalOpen}
+              setOpen={setDeleteModalOpen}
+              handleDelete={handleDeletePost}
+              deleteResponse={deleteResponse}
+              navigateTo="/"
+            />
+          }
+        </div>
+      )}
       <Badge category={post.category} />
       <h1 className="text-[#181A2A] text-4xl font-semibold mt-4 mb-5 leading-[52px]">
         {post.title}
