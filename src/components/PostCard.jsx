@@ -11,7 +11,7 @@ import { formatDate } from "../utils/dateFormat";
 
 export function PostCard({ post }) {
   const navigate = useNavigate();
-  const { category, title, summary, _id, createdAt } = post;
+  const { category, title, summary, _id, createdAt, author } = post;
 
   const handleClick = () => {
     navigate(`/post/${_id}`);
@@ -42,9 +42,7 @@ export function PostCard({ post }) {
           <div className="flex items-center gap-2">
             <img className="h-8 w-8" src="/hero-avatar.png" alt="hero-avatar" />
             <div>
-              <p className="text-[#97989F] text-xs font-semibold">
-                Mykyta Krumalenko
-              </p>
+              <p className="text-[#97989F] text-xs font-semibold">{author}</p>
               <p className="text-[#97989F] text-xs">{formatDate(createdAt)}</p>
             </div>
           </div>
