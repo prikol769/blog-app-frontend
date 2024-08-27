@@ -208,7 +208,9 @@ const CreatePostPage = () => {
         {previewArticle && (
           <div
             className={`flex max-w-[100%] ${
-              previewFullArticle ? "max-w-[1000px] w-full" : "2xl:max-w-[50%]"
+              previewFullArticle
+                ? "max-w-[1000px] w-full mx-auto"
+                : "2xl:max-w-[50%]"
             }`}
           >
             <PreviewArticle
