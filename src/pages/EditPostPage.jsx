@@ -11,7 +11,7 @@ import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 import FormInput from "../components/FormInput";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { PreviewPostCard } from "../components/PreviewPostCard";
 import { useGlobalContext } from "../context/GlobalContext";
@@ -20,7 +20,7 @@ import javascript from "highlight.js/lib/languages/javascript";
 import css from "highlight.js/lib/languages/css";
 import "highlight.js/styles/monokai-sublime.css";
 import PreviewArticle from "../components/PreviewArticle";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("css", css);
@@ -59,7 +59,7 @@ const formats = [
 
 const EditPostPage = () => {
   const { userInfo } = useGlobalContext();
-
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [title, setTitle] = useState("");
@@ -92,7 +92,7 @@ const EditPostPage = () => {
   const updatePost = async (e) => {
     e.preventDefault();
     try {
-      const { data: response } = await axios.put(
+      const data = await axios.put(
         `http://localhost:5000/api/posts/${id}/${userInfo.id}`,
         {
           title,
@@ -102,7 +102,10 @@ const EditPostPage = () => {
         },
         { withCredentials: true }
       );
-      console.log(response, "response");
+      console.log(data, "data");
+      if (data.statusText == "OK") {
+        navigate(`/post/${id}`);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -209,7 +212,6 @@ const EditPostPage = () => {
             value={content}
             onChange={(newValue) => {
               setContent(newValue);
-              console.log("onChange");
             }}
             className="!border !rounded-lg !border-gray-300  bg-white text-gray-900 shadow-lg shadow-gray-900/5 "
           />
