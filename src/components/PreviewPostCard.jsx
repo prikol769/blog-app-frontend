@@ -8,7 +8,7 @@ import {
 import Badge from "./Badge";
 import { formatDate } from "../utils/dateFormat";
 
-export function PreviwPostCard({ category, title, summary, author }) {
+export function PreviewPostCard({ category, title, summary, author }) {
   const upperCaseTitle = title.charAt(0).toUpperCase() + title.slice(1);
   return (
     <Card className="pt-10 max-w-[600px] w-auto min-w-96 shadow-[0px_4px_6px_1px_rgb(0,0,0,0.1)] min-h-[480px] max-h-[480px] justify-between">

@@ -1,21 +1,25 @@
 import {
   Button,
   ButtonGroup,
+  IconButton,
   Textarea,
   Typography,
 } from "@material-tailwind/react";
+
+import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 
 import FormInput from "../components/FormInput";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
 import axios from "axios";
-import { PreviwPostCard } from "../components/PreviwPostCard";
+import { PreviewPostCard } from "../components/PreviewPostCard";
 import { useGlobalContext } from "../context/GlobalContext";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 import css from "highlight.js/lib/languages/css";
 import "highlight.js/styles/monokai-sublime.css";
+import PreviewArticle from "../components/PreviewArticle";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("css", css);
@@ -54,13 +58,15 @@ const formats = [
 
 const CreatePostPage = () => {
   const { userInfo } = useGlobalContext();
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
+
   const [previewCard, setPreviewCard] = useState(false);
   const [previewArticle, setPreviewArticle] = useState(false);
-  console.log(previewCard, "previewCard");
+  const [previewFullArticle, setPreviewFullArticle] = useState(false);
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -84,6 +90,21 @@ const CreatePostPage = () => {
   return (
     <div className="mb-10 relative">
       <div className="py-4 flex items-center justify-end">
+        {previewArticle && (
+          <IconButton
+            variant="outlined"
+            className={`mr-5 ${
+              previewFullArticle
+                ? "bg-[#212121] text-white"
+                : "bg-white text-black"
+            }`}
+            onClick={() => {
+              setPreviewFullArticle(!previewFullArticle);
+            }}
+          >
+            <ArrowsPointingOutIcon className="w-5 h-5" />
+          </IconButton>
+        )}
         <ButtonGroup variant="outlined">
           <Button
             className={`${
@@ -92,6 +113,7 @@ const CreatePostPage = () => {
             onClick={() => {
               setPreviewCard(!previewCard);
               setPreviewArticle(false);
+              setPreviewFullArticle(false);
             }}
           >
             Card
@@ -103,6 +125,7 @@ const CreatePostPage = () => {
             onClick={() => {
               setPreviewArticle(!previewArticle);
               setPreviewCard(false);
+              setPreviewFullArticle(false);
             }}
           >
             Article
@@ -110,9 +133,16 @@ const CreatePostPage = () => {
         </ButtonGroup>
       </div>
       <div
-        className={`flex flex-col lg:flex-row ${previewCard ? "gap-12" : ""} `}
+        className={`flex  ${previewCard || previewArticle ? "gap-12" : ""} ${
+          previewCard ? "flex-col lg:flex-row gap-12" : ""
+        }  ${previewArticle ? "flex-col 2xl:flex-row gap-12" : ""}`}
       >
-        <form className="flex flex-col gap-4 flex-1" onSubmit={createNewPost}>
+        <form
+          className={`flex flex-col gap-4 flex-1 ${
+            previewFullArticle ? "hidden" : ""
+          }`}
+          onSubmit={createNewPost}
+        >
           <div className="flex gap-6">
             <FormInput
               label="Title"
@@ -163,18 +193,32 @@ const CreatePostPage = () => {
             Create Post
           </Button>
         </form>
-        <div className="max-w-[430px]">
-          {previewCard && (
-            <div>
-              <PreviwPostCard
-                title={title}
-                category={category}
-                summary={summary}
-                author={userInfo.fullName}
-              />
-            </div>
-          )}
-        </div>
+
+        {previewCard && (
+          <div className="max-w-[430px]">
+            <PreviewPostCard
+              title={title}
+              category={category}
+              summary={summary}
+              author={userInfo.fullName}
+            />
+          </div>
+        )}
+
+        {previewArticle && (
+          <div
+            className={`flex max-w-[100%] ${
+              previewFullArticle ? "max-w-[1000px] w-full" : "2xl:max-w-[50%]"
+            }`}
+          >
+            <PreviewArticle
+              title={title}
+              category={category}
+              author={userInfo.fullName}
+              content={content}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
