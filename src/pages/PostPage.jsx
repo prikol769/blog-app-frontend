@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Badge from "../components/Badge";
 import { formatDate } from "../utils/dateFormat";
 import { useGlobalContext } from "../context/GlobalContext";
@@ -9,6 +9,7 @@ import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Modal } from "../components/Modal";
 
 const PostPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { userInfo } = useGlobalContext();
   const [post, setPost] = useState([]);
@@ -47,11 +48,19 @@ const PostPage = () => {
     }
   };
 
+  const handleEditPost = async () => {
+    navigate(`/edit-post/${id}`);
+  };
+
   return (
     <div className="pt-8 pb-[80px] max-w-[1000px] mx-auto relative">
       {isPostCreator && (
         <div className="flex gap-4 pb-4 justify-end">
-          <Button size="md" className="flex items-center gap-3 pl-4">
+          <Button
+            onClick={handleEditPost}
+            size="md"
+            className="flex items-center gap-3 pl-4"
+          >
             <PencilSquareIcon className="w-4 h-4" />
             Edit
           </Button>

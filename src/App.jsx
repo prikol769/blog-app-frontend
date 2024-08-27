@@ -7,6 +7,7 @@ import { GlobalProvider } from "./context/GlobalContext";
 import AuthLayout from "./components/AuthLayout";
 import CreatePostPage from "./pages/CreatePostPage";
 import PostPage from "./pages/PostPage";
+import EditPostPage from "./pages/EditPostPage";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="/create-post" element={<CreatePostPage />} />
             <Route path="/post/:id" element={<PostPage />} />
+            <Route path="/edit-post/:id" element={<EditPostPage />} />
           </Route>
         </Routes>
       </GlobalProvider>
