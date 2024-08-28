@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useGlobalContext } from "../context/GlobalContext";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import FormInput from "../components/FormInput";
 import {
@@ -16,7 +15,6 @@ import AlertCustomCloseIcon from "../components/AlertCustomCloseIcon";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const EditProfilePage = () => {
-  const { userInfo } = useGlobalContext();
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [userDataPersonalStart, setUserDataPersonalStart] = useState({
