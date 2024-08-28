@@ -79,7 +79,7 @@ const ProfilePage = () => {
     <div>
       <div className="bg-[#F6F6F7] p-12 rounded-xl flex flex-col justify-center items-center gap-4 text-center">
         <div className=" w-40 h-40 bg-black text-6xl font-semibold text-white rounded-full  flex items-center justify-center">
-          M
+          {user?.fullName[0]}
         </div>
         <div>
           <p className="text-xl font-semibold text-[#181A2A]">
