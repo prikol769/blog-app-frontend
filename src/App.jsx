@@ -26,10 +26,11 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
-
-            <Route path="/edit-post/:id" element={<EditPostPage />} />
-            <Route path="/create-post" element={<CreatePostPage />} />
-            <Route path="/edit-profile/:id" element={<EditProfilePage />} />
+            <Route element={<OnlySignInPrivateRoute />}>
+              <Route path="/edit-post/:id" element={<EditPostPage />} />
+              <Route path="/create-post" element={<CreatePostPage />} />
+              <Route path="/edit-profile/:id" element={<EditProfilePage />} />
+            </Route>
           </Route>
           <Route path="*" exact={true} element={<NotFoundPage />} />
         </Routes>

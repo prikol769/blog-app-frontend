@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import { Button } from "@material-tailwind/react";
 import { AvatarWithUserDropdown } from "./AvatarWithUserDropdown";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
   const { setUserInfo, userInfo } = useGlobalContext();
 
   useEffect(() => {
@@ -33,6 +37,13 @@ const Header = () => {
         }
       );
       setUserInfo(null);
+      if (
+        location.pathname === "/create-post" ||
+        location.pathname.includes("/edit-profile") ||
+        location.pathname.includes("/edit-post")
+      ) {
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }
