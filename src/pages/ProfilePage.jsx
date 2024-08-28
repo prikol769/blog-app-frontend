@@ -92,19 +92,25 @@ const ProfilePage = () => {
         <p className="text-xl font-semibold text-[#181A2A] mb-8">
           Latest Posts
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-8">
-          {userPosts?.posts?.map((post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-              isPostCreator={isPostCreator}
-              openDeleteModalHandler={(postId) =>
-                openDeleteModalHandler(postId)
-              }
-              handleEditPost={() => navigate(`/edit-post/${post._id}`)}
-            />
-          ))}
-        </div>
+        {userPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-8">
+            {userPosts?.posts?.map((post) => (
+              <PostCard
+                key={post._id}
+                post={post}
+                isPostCreator={isPostCreator}
+                openDeleteModalHandler={(postId) =>
+                  openDeleteModalHandler(postId)
+                }
+                handleEditPost={() => navigate(`/edit-post/${post._id}`)}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-2xl text-[#696A75]">
+            No posts have been made yet.
+          </p>
+        )}
       </div>
       {deleteModalOpen && (
         <Modal
