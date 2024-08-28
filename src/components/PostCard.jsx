@@ -4,12 +4,14 @@ import {
   CardBody,
   CardFooter,
   Button,
+  IconButton,
 } from "@material-tailwind/react";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/dateFormat";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 
-export function PostCard({ post }) {
+export function PostCard({ post, openDeleteModalHandler, isPostCreator }) {
   const navigate = useNavigate();
   const { category, title, summary, _id, createdAt, author } = post;
 
@@ -27,7 +29,23 @@ export function PostCard({ post }) {
         />
       </CardHeader>
       <CardBody className="min-h-[175px]">
-        <Badge category={category} />
+        <div className="flex justify-between items-center">
+          <Badge category={category} />
+          {isPostCreator && (
+            <div className="flex gap-2">
+              <IconButton size="sm">
+                <PencilSquareIcon className="w-4 h-4 translate-y-[-5%] translate-x-[5%]" />
+              </IconButton>
+              <IconButton
+                size="sm"
+                color="red"
+                onClick={() => openDeleteModalHandler(_id)}
+              >
+                <TrashIcon className="w-4 h-4" />
+              </IconButton>
+            </div>
+          )}
+        </div>
         <h5
           color="blue-gray"
           className="mb-2 mt-5 line-clamp-1 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-inherit"
