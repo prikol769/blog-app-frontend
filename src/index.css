@@ -150,3 +150,105 @@ pre,
   z-index: 998;
   border-bottom: 1px solid rgb(224 224 224) !important;
 }
+
+/* 404 */
+
+.tumbleweed {
+  position: absolute;
+  top: 0;
+  left: -5rem;
+  background: url(/tumbleweed.png) no-repeat center;
+  background-size: cover;
+  width: 5rem;
+  height: 5rem;
+  animation: jumping 2.5s infinite, rolling 7s linear infinite,
+    rotating 2s linear infinite;
+}
+
+@keyframes jumping {
+  0% {
+    top: 0rem;
+    animation-timing-function: ease-in;
+  }
+  25% {
+    top: 3rem;
+    animation-timing-function: ease-out;
+  }
+  50% {
+    top: 1rem;
+    animation-timing-function: ease-in;
+  }
+  75% {
+    top: 3rem;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    top: 0rem;
+    animation-timing-function: ease-in;
+  }
+}
+
+@keyframes rolling {
+  0% {
+    left: -5rem;
+  }
+  100% {
+    left: calc(100% - 100px);
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animation-container {
+  position: relative;
+  display: block;
+  text-align: center;
+  height: 125px;
+  width: calc(100vw);
+  border-bottom: solid 2px #333;
+  overflow: hidden;
+}
+
+.pebble1 {
+  position: absolute;
+  top: 95%;
+  background-color: #333;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px 20px 0px 0px;
+  animation: pebblesAnim 5s linear infinite;
+}
+.pebble2 {
+  position: absolute;
+  top: 97%;
+  background-color: #333;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px 10px 0px 0px;
+  animation: pebblesAnim 7s linear infinite;
+}
+.pebble3 {
+  position: absolute;
+  top: 98%;
+  background-color: #333;
+  width: 5px;
+  height: 5px;
+  border-radius: 20px 20px 0px 0px;
+  animation: pebblesAnim 9s linear infinite;
+}
+
+@keyframes pebblesAnim {
+  0% {
+    right: -20%;
+  }
+  100% {
+    right: 110%;
+  }
+}

@@ -10,6 +10,7 @@ import PostPage from "./pages/PostPage";
 import EditPostPage from "./pages/EditPostPage";
 import ProfilePage from "./pages/ProfilePage";
 import OnlySignInPrivateRoute from "./components/OnlySignInPrivateRoute";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/create-post" element={<CreatePostPage />} />
             </Route>
           </Route>
+          <Route path="*" exact={true} element={<NotFoundPage />} />
         </Routes>
       </GlobalProvider>
     </>
