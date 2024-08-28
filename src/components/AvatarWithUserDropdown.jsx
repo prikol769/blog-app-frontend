@@ -9,40 +9,34 @@ import {
 } from "@material-tailwind/react";
 import {
   Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
   PowerIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import { useGlobalContext } from "../context/GlobalContext";
-
-// profile menu component
-const profileMenuItems = [
-  {
-    label: "My Profile",
-    icon: UserCircleIcon,
-  },
-  {
-    label: "Edit Profile",
-    icon: Cog6ToothIcon,
-  },
-  {
-    label: "Inbox",
-    icon: InboxArrowDownIcon,
-  },
-  {
-    label: "Help",
-    icon: LifebuoyIcon,
-  },
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 export function AvatarWithUserDropdown({ onLogout }) {
+  const navigate = useNavigate();
   const { userInfo } = useGlobalContext();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  // profile menu component
+  const profileMenuItems = [
+    {
+      label: "My Profile",
+      icon: UserCircleIcon,
+      link: `/profile/${userInfo.id}`,
+    },
+    {
+      label: "Edit Profile",
+      icon: Cog6ToothIcon,
+      link: `/edit-profile/${userInfo.id}`,
+    },
+    {
+      label: "Sign Out",
+      icon: PowerIcon,
+      link: "/",
+    },
+  ];
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -54,22 +48,22 @@ export function AvatarWithUserDropdown({ onLogout }) {
           color="blue-gray"
           className="flex items-center rounded-full p-0"
         >
-          <Button
-            variant="outlined"
-            className="h-12 w-12 text-xl font-semibold text-white rounded-full bg-black flex items-center justify-center "
-          >
+          <p className="h-12 w-12 text-xl font-semibold text-white rounded-full bg-black flex items-center justify-center ">
             {userInfo.fullName[0]}
-          </Button>
+          </p>
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon, link }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}
               onClick={() => {
                 closeMenu();
+                if (!isLastItem) {
+                  navigate(link);
+                }
                 if (isLastItem) {
                   onLogout();
                 }
