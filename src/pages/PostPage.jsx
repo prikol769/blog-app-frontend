@@ -43,7 +43,6 @@ const PostPage = () => {
         `http://localhost:5000/api/posts/${id}/${post.userId}`,
         { withCredentials: true }
       );
-      console.log(response, "response");
       setDeleteResponse(response);
     } catch (error) {
       console.log(error);

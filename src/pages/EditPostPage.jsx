@@ -92,7 +92,7 @@ const EditPostPage = () => {
       }
     };
     fetchPost();
-  }, []);
+  }, [id]);
 
   const updatePost = async (e) => {
     e.preventDefault();
@@ -107,7 +107,7 @@ const EditPostPage = () => {
         },
         { withCredentials: true }
       );
-      console.log(data, "data");
+
       if (data.statusText == "OK") {
         navigate(`/post/${id}`);
       }

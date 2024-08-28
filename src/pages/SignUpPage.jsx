@@ -19,13 +19,9 @@ const SignUpPage = () => {
     e.preventDefault();
 
     try {
-      const { data: response } = await axios.post(
-        "http://localhost:5000/api/auth/signup",
-        {
-          ...userData,
-        }
-      );
-      console.log(response, "response");
+      await axios.post("http://localhost:5000/api/auth/signup", {
+        ...userData,
+      });
       setError("Sign Up successful!");
       setTimeout(() => {
         navigate("/sign-in");

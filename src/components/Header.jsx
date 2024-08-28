@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname);
+
   const { setUserInfo, userInfo } = useGlobalContext();
 
   useEffect(() => {

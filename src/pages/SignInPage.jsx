@@ -25,7 +25,6 @@ const SignInPage = () => {
         },
         { withCredentials: true }
       );
-      console.log(response, "response");
       if (response._id) {
         setUserInfo(response);
         navigate("/");

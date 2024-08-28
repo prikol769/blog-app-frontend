@@ -43,7 +43,7 @@ const EditProfilePage = () => {
         const { data: response } = await axios.get(
           `http://localhost:5000/api/users/${id}`
         );
-        console.log(response, "response");
+
         setUser(response);
         setUserDataPersonal({
           ...userDataPersonal,
@@ -76,7 +76,6 @@ const EditProfilePage = () => {
         },
         { withCredentials: true }
       );
-      console.log(response, "response");
       setUserDataPersonal({
         ...userDataPersonal,
         fullName: response.fullName,
@@ -112,7 +111,7 @@ const EditProfilePage = () => {
 
     try {
       setIsLoading(true);
-      const { data: response } = await axios.put(
+      await axios.put(
         `http://localhost:5000/api/users/update-password/${id}`,
         {
           currentPassword: userDataPassword.currentPassword,
@@ -125,7 +124,6 @@ const EditProfilePage = () => {
         confirmPassword: "",
         currentPassword: "",
       });
-      console.log(response, "response");
       setError("Password updated successful!");
     } catch (error) {
       console.log(error);

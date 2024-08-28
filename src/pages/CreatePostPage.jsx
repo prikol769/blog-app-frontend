@@ -83,7 +83,6 @@ const CreatePostPage = () => {
         },
         { withCredentials: true }
       );
-      console.log(data, "data");
 
       if (data.statusText === "Created") {
         navigate(`/post/${data.data._id}`);

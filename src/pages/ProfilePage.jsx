@@ -15,10 +15,8 @@ const ProfilePage = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deletedPostId, setDeletedPostId] = useState("");
   const [deleteResponse, setDeleteResponse] = useState(null);
-  console.log(deleteResponse, "deleteResponse");
 
   const isPostCreator = userInfo?.id === id;
-  console.log(userPosts, "userPosts");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,7 +24,6 @@ const ProfilePage = () => {
         const { data: response } = await axios.get(
           `http://localhost:5000/api/users/${id}`
         );
-        console.log(response, "response");
         setUser(response);
       } catch (error) {
         console.log(error);
@@ -38,7 +35,6 @@ const ProfilePage = () => {
         const { data: response } = await axios.get(
           `http://localhost:5000/api/posts/user-posts/${id}`
         );
-        console.log(response, "response");
         setUserPosts(response);
       } catch (error) {
         console.log(error);
@@ -53,7 +49,6 @@ const ProfilePage = () => {
         `http://localhost:5000/api/posts/${deletedPostId}/${id}`,
         { withCredentials: true }
       );
-      console.log(data, "data");
       setDeleteResponse(data.data);
 
       if (data.statusText === "OK") {
