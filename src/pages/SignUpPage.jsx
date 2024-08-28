@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AlertCustomCloseIcon from "../components/AlertCustomCloseIcon";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const SignUpPage = () => {
     email: "",
   });
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[100vh]">
+    <div className="flex items-center justify-center h-[100vh] px-4">
       {error && <AlertCustomCloseIcon message={error} setError={setError} />}
       <form
         onSubmit={handleSubmit}
@@ -74,12 +76,25 @@ const SignUpPage = () => {
         <FormInput
           required
           minLength="4"
-          type="password"
+          type={showPassword ? "text" : "password"}
           label="Password"
           placeholder="Set your password"
           value={userData.password}
           onChange={(e) =>
             setUserData({ ...userData, password: e.target.value })
+          }
+          icon={
+            showPassword ? (
+              <EyeIcon
+                className="mt-2 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            ) : (
+              <EyeSlashIcon
+                className="mt-2 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            )
           }
         />
         <Button className="mt-6 h-[52px] text-md" type="submit">

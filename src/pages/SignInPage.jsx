@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import AlertCustomCloseIcon from "../components/AlertCustomCloseIcon";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const SignInPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { setUserInfo } = useGlobalContext();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[100vh]">
+    <div className="flex items-center justify-center h-[100vh] px-4">
       {error && <AlertCustomCloseIcon message={error} setError={setError} />}
       <form
         onSubmit={handleLogin}
@@ -58,10 +60,23 @@ const SignInPage = () => {
           required
           minLength="4"
           placeholder="Enter your password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           label="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          icon={
+            showPassword ? (
+              <EyeIcon
+                className="mt-2 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            ) : (
+              <EyeSlashIcon
+                className="mt-2 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            )
+          }
         />
         <Button className="mt-6 h-[52px] text-md" type="submit">
           Sign In
