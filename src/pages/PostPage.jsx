@@ -33,7 +33,7 @@ const PostPage = () => {
       }
     };
     fetchPost();
-  }, []);
+  }, [id]);
 
   const handleDeletePost = async () => {
     try {
@@ -88,7 +88,10 @@ const PostPage = () => {
         {post.title}
       </h1>
       <div className="flex items-center gap-6">
-        <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => navigate(`/profile/${post.userId}`)}
+        >
           <img className="h-8 w-8" src="/hero-avatar.png" alt="hero-avatar" />
           <p className="text-[#97989F] text-sm font-semibold">{post.author}</p>
         </div>
