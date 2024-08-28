@@ -8,6 +8,7 @@ import AuthLayout from "./components/AuthLayout";
 import CreatePostPage from "./pages/CreatePostPage";
 import PostPage from "./pages/PostPage";
 import EditPostPage from "./pages/EditPostPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/create-post" element={<CreatePostPage />} />
             <Route path="/post/:id" element={<PostPage />} />
             <Route path="/edit-post/:id" element={<EditPostPage />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
           </Route>
         </Routes>
       </GlobalProvider>
