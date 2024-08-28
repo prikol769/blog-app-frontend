@@ -20,6 +20,7 @@ import javascript from "highlight.js/lib/languages/javascript";
 import css from "highlight.js/lib/languages/css";
 import "highlight.js/styles/monokai-sublime.css";
 import PreviewArticle from "../components/PreviewArticle";
+import { useNavigate } from "react-router-dom";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("css", css);
@@ -57,6 +58,7 @@ const formats = [
 ];
 
 const CreatePostPage = () => {
+  const navigate = useNavigate();
   const { userInfo } = useGlobalContext();
 
   const [title, setTitle] = useState("");
@@ -71,7 +73,7 @@ const CreatePostPage = () => {
   const createNewPost = async (e) => {
     e.preventDefault();
     try {
-      const { data: response } = await axios.post(
+      const data = await axios.post(
         "http://localhost:5000/api/posts",
         {
           title,
@@ -81,7 +83,11 @@ const CreatePostPage = () => {
         },
         { withCredentials: true }
       );
-      console.log(response, "response");
+      console.log(data, "data");
+
+      if (data.statusText === "Created") {
+        navigate(`/post/${data.data._id}`);
+      }
     } catch (error) {
       console.log(error);
     }
