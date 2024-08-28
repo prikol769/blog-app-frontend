@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Badge from "../components/Badge";
 import { formatDate } from "../utils/dateFormat";
 import { useGlobalContext } from "../context/GlobalContext";
-import { Button } from "@material-tailwind/react";
+import { Button, Spinner } from "@material-tailwind/react";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Modal } from "../components/Modal";
 
@@ -16,20 +16,22 @@ const PostPage = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteResponse, setDeleteResponse] = useState(null);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const isPostCreator = userInfo?.id === post.userId;
 
-  console.log(userInfo, "userInfo");
-
   useEffect(() => {
+    setIsLoading(true);
     const fetchPost = async () => {
       try {
         const { data: response } = await axios.get(
           `http://localhost:5000/api/posts/${id}`
         );
-        console.log(response, "response");
         setPost(response);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchPost();
@@ -51,6 +53,8 @@ const PostPage = () => {
   const handleEditPost = async () => {
     navigate(`/edit-post/${id}`);
   };
+
+  if (isLoading) return <Spinner className="h-12 w-12 m-auto" />;
 
   return (
     <div className="pt-8 pb-[80px] max-w-[1000px] mx-auto relative">
