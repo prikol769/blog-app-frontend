@@ -12,6 +12,7 @@ export function Modal({
   setOpen,
   handleDelete,
   deleteResponse,
+  setDeleteResponse,
   navigateTo,
 }) {
   const navigate = useNavigate();
@@ -54,7 +55,9 @@ export function Modal({
       ) : (
         <>
           <DialogHeader>{deleteResponse.message}</DialogHeader>
-          <DialogBody>You will be redirected to the home page.</DialogBody>
+          {navigateTo && (
+            <DialogBody>You will be redirected to the home page.</DialogBody>
+          )}
           <DialogFooter>
             <Button
               variant="gradient"
@@ -62,6 +65,9 @@ export function Modal({
                 setOpen(false);
                 if (navigateTo) {
                   navigate(navigateTo);
+                }
+                if (setDeleteResponse) {
+                  setDeleteResponse(null);
                 }
               }}
               className="mr-6"
