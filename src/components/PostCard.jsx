@@ -18,7 +18,7 @@ export function PostCard({
   handleEditPost,
 }) {
   const navigate = useNavigate();
-  const { category, title, summary, _id, createdAt, author } = post;
+  const { category, title, summary, _id, createdAt, author, userId } = post;
 
   const handleClick = () => {
     navigate(`/post/${_id}`);
@@ -63,9 +63,19 @@ export function PostCard({
       <CardFooter className="pt-0 flex items-center justify-between">
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center gap-2">
-            <img className="h-8 w-8" src="/hero-avatar.png" alt="hero-avatar" />
+            <img
+              onClick={() => navigate(`/profile/${userId}`)}
+              className="h-8 w-8 cursor-pointer"
+              src="/hero-avatar.png"
+              alt="hero-avatar"
+            />
             <div>
-              <p className="text-[#97989F] text-xs font-semibold">{author}</p>
+              <p
+                onClick={() => navigate(`/profile/${userId}`)}
+                className="text-[#97989F] text-xs font-semibold cursor-pointer"
+              >
+                {author}
+              </p>
               <p className="text-[#97989F] text-xs">{formatDate(createdAt)}</p>
             </div>
           </div>

@@ -45,7 +45,7 @@ const ProfilePage = () => {
       }
     };
     fetchUserPosts();
-  }, []);
+  }, [id]);
 
   const handleDeletePost = async () => {
     try {
@@ -92,7 +92,7 @@ const ProfilePage = () => {
         <p className="text-xl font-semibold text-[#181A2A] mb-8">
           Latest Posts
         </p>
-        {userPosts.length > 0 ? (
+        {userPosts?.posts?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-8">
             {userPosts?.posts?.map((post) => (
               <PostCard
