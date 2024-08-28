@@ -11,7 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/dateFormat";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 
-export function PostCard({ post, openDeleteModalHandler, isPostCreator }) {
+export function PostCard({
+  post,
+  openDeleteModalHandler,
+  isPostCreator,
+  handleEditPost,
+}) {
   const navigate = useNavigate();
   const { category, title, summary, _id, createdAt, author } = post;
 
@@ -33,7 +38,7 @@ export function PostCard({ post, openDeleteModalHandler, isPostCreator }) {
           <Badge category={category} />
           {isPostCreator && (
             <div className="flex gap-2">
-              <IconButton size="sm">
+              <IconButton size="sm" onClick={handleEditPost}>
                 <PencilSquareIcon className="w-4 h-4 translate-y-[-5%] translate-x-[5%]" />
               </IconButton>
               <IconButton

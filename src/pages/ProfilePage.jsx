@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PostCard } from "../components/PostCard";
 import { useGlobalContext } from "../context/GlobalContext";
 import { Modal } from "../components/Modal";
 
 const ProfilePage = () => {
   const { userInfo } = useGlobalContext();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
@@ -100,6 +101,7 @@ const ProfilePage = () => {
               openDeleteModalHandler={(postId) =>
                 openDeleteModalHandler(postId)
               }
+              handleEditPost={() => navigate(`/edit-post/${post._id}`)}
             />
           ))}
         </div>
