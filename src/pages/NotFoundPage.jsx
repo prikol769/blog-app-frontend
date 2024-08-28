@@ -22,8 +22,9 @@ const NotFoundPage = () => {
           variant="paragraph"
           className="text-[#616161] text-xl mt-5 mb-12"
         >
-          You've ventured into uncharted digital territory. The page you seek
-          has eluded us. Let's guide you back to familiar paths.
+          {
+            "You've ventured into uncharted digital territory. The page you seek has eluded us. Let's guide you back to familiar paths."
+          }
         </Typography>
         <Button onClick={() => navigate("/")}>BACK TO HOME</Button>
       </div>
