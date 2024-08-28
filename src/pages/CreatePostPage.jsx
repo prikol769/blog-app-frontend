@@ -74,7 +74,7 @@ const CreatePostPage = () => {
     e.preventDefault();
     try {
       const data = await axios.post(
-        "http://localhost:5000/api/posts",
+        "/api/posts",
         {
           title,
           summary,

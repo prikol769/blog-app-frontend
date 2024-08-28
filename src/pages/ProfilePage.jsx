@@ -21,9 +21,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const { data: response } = await axios.get(
-          `http://localhost:5000/api/users/${id}`
-        );
+        const { data: response } = await axios.get(`/api/users/${id}`);
         setUser(response);
       } catch (error) {
         console.log(error);
@@ -33,7 +31,7 @@ const ProfilePage = () => {
     const fetchUserPosts = async () => {
       try {
         const { data: response } = await axios.get(
-          `http://localhost:5000/api/posts/user-posts/${id}`
+          `/api/posts/user-posts/${id}`
         );
         setUserPosts(response);
       } catch (error) {
@@ -45,10 +43,9 @@ const ProfilePage = () => {
 
   const handleDeletePost = async () => {
     try {
-      const data = await axios.delete(
-        `http://localhost:5000/api/posts/${deletedPostId}/${id}`,
-        { withCredentials: true }
-      );
+      const data = await axios.delete(`/api/posts/${deletedPostId}/${id}`, {
+        withCredentials: true,
+      });
       setDeleteResponse(data.data);
 
       if (data.statusText === "OK") {

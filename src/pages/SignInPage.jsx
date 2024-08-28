@@ -20,7 +20,7 @@ const SignInPage = () => {
 
     try {
       const { data: response } = await axios.post(
-        "http://localhost:5000/api/auth/signin",
+        "/api/auth/signin",
         {
           username,
           password,

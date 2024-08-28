@@ -40,9 +40,7 @@ const EditProfilePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const { data: response } = await axios.get(
-          `http://localhost:5000/api/users/${id}`
-        );
+        const { data: response } = await axios.get(`/api/users/${id}`);
 
         setUser(response);
         setUserDataPersonal({
@@ -69,7 +67,7 @@ const EditProfilePage = () => {
     setIsLoading(true);
     try {
       const { data: response } = await axios.put(
-        `http://localhost:5000/api/users/update-user/${id}`,
+        `/api/users/update-user/${id}`,
         {
           ...userDataPersonal,
           fullName: userDataPersonal.fullName.trim(),
@@ -112,7 +110,7 @@ const EditProfilePage = () => {
     try {
       setIsLoading(true);
       await axios.put(
-        `http://localhost:5000/api/users/update-password/${id}`,
+        `/api/users/update-password/${id}`,
         {
           currentPassword: userDataPassword.currentPassword,
           newPassword: userDataPassword.password,

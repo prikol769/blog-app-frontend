@@ -77,9 +77,7 @@ const EditPostPage = () => {
     const fetchPost = async () => {
       try {
         setIsLoading(true);
-        const { data: response } = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
-        );
+        const { data: response } = await axios.get(`/api/posts/${id}`);
         const { title, category, summary, content } = response;
         setTitle(title);
         setCategory(category);
@@ -98,7 +96,7 @@ const EditPostPage = () => {
     e.preventDefault();
     try {
       const data = await axios.put(
-        `http://localhost:5000/api/posts/${id}/${userInfo.id}`,
+        `/api/posts/${id}/${userInfo.id}`,
         {
           title,
           summary,

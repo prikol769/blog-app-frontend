@@ -16,7 +16,7 @@ const Header = () => {
     const profileFetch = async () => {
       try {
         const { data: response } = await axios.get(
-          "http://localhost:5000/api/auth/profile",
+          "/api/auth/profile",
           { withCredentials: true }
         );
         setUserInfo(response);
@@ -30,7 +30,7 @@ const Header = () => {
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        "/api/auth/logout",
         {},
         {
           withCredentials: true,

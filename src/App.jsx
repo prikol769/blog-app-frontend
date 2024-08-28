@@ -12,6 +12,9 @@ import ProfilePage from "./pages/ProfilePage";
 import OnlySignInPrivateRoute from "./components/OnlySignInPrivateRoute";
 import NotFoundPage from "./pages/NotFoundPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import axios from "axios";
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const App = () => {
   return (

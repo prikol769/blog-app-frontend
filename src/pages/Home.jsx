@@ -15,9 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data: response } = await axios(
-          "http://localhost:5000/api/posts"
-        );
+        const { data: response } = await axios("/api/posts");
         setDataPosts(response);
       } catch (error) {
         console.log(error);
@@ -30,7 +28,7 @@ const Home = () => {
     setIsLoading(true);
     try {
       const { data: response } = await axios(
-        `http://localhost:5000/api/posts?startIndex=${dataPosts.posts.length}&limit=${postLimit}`
+        `/api/posts?startIndex=${dataPosts.posts.length}&limit=${postLimit}`
       );
       setDataPosts({
         ...dataPosts,

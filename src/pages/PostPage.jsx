@@ -24,9 +24,7 @@ const PostPage = () => {
     setIsLoading(true);
     const fetchPost = async () => {
       try {
-        const { data: response } = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
-        );
+        const { data: response } = await axios.get(`/api/posts/${id}`);
         setPost(response);
       } catch (error) {
         console.log(error);
@@ -40,7 +38,7 @@ const PostPage = () => {
   const handleDeletePost = async () => {
     try {
       const { data: response } = await axios.delete(
-        `http://localhost:5000/api/posts/${id}/${post.userId}`,
+        `/api/posts/${id}/${post.userId}`,
         { withCredentials: true }
       );
       setDeleteResponse(response);
