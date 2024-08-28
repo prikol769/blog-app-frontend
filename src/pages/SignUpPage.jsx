@@ -48,6 +48,8 @@ const SignUpPage = () => {
           <p className="mt-[-10px]">Create your account</p>
         </div>
         <FormInput
+          required
+          minLength="3"
           label="Full name"
           placeholder="Enter your full name"
           value={userData.fullName}
@@ -56,12 +58,16 @@ const SignUpPage = () => {
           }
         />
         <FormInput
+          required
+          minLength="4"
           label="Email"
           placeholder="Enter your email address"
           value={userData.email}
           onChange={(e) => setUserData({ ...userData, email: e.target.value })}
         />
         <FormInput
+          required
+          minLength="4"
           label="Username"
           placeholder="Set your username"
           value={userData.username}
@@ -70,6 +76,8 @@ const SignUpPage = () => {
           }
         />
         <FormInput
+          required
+          minLength="4"
           type="password"
           label="Password"
           placeholder="Set your password"

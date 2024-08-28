@@ -48,12 +48,16 @@ const SignInPage = () => {
           <p className="mt-[-10px]">Enter your credentials to login</p>
         </div>
         <FormInput
+          required
+          minLength="4"
           placeholder="Enter your username"
           label="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <FormInput
+          required
+          minLength="4"
           placeholder="Enter your password"
           type="password"
           label="Password"
