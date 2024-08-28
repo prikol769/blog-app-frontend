@@ -16,7 +16,7 @@ const PostPage = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteResponse, setDeleteResponse] = useState(null);
 
-  const isPostCreator = userInfo.id === post.userId;
+  const isPostCreator = userInfo?.id === post.userId;
 
   console.log(userInfo, "userInfo");
 

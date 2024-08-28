@@ -17,7 +17,7 @@ const ProfilePage = () => {
   const [deleteResponse, setDeleteResponse] = useState(null);
   console.log(deleteResponse, "deleteResponse");
 
-  const isPostCreator = userInfo.id === id;
+  const isPostCreator = userInfo?.id === id;
   console.log(userPosts, "userPosts");
 
   useEffect(() => {
