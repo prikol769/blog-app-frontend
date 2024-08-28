@@ -1,11 +1,16 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Spinner } from "@material-tailwind/react";
 import { PostCard } from "../components/PostCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
-  console.log(posts);
+  const [dataPosts, setDataPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const postLimit =
+    dataPosts?.totalPosts - dataPosts?.posts?.length < 3
+      ? dataPosts?.totalPosts - dataPosts?.posts.length
+      : 3;
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -13,14 +18,30 @@ const Home = () => {
         const { data: response } = await axios(
           "http://localhost:5000/api/posts"
         );
-        console.log(response, "response");
-        setPosts(response);
+        setDataPosts(response);
       } catch (error) {
         console.log(error);
       }
     };
     fetchPosts();
   }, []);
+
+  const handleLoadMore = async () => {
+    setIsLoading(true);
+    try {
+      const { data: response } = await axios(
+        `http://localhost:5000/api/posts?startIndex=${dataPosts.posts.length}&limit=${postLimit}`
+      );
+      setDataPosts({
+        ...dataPosts,
+        posts: [...dataPosts.posts, ...response.posts],
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -44,16 +65,22 @@ const Home = () => {
         </div>
       </section>
       <section className="mt-[150px]">
-        <div className="grid  grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-8">
-          {posts?.posts?.map((post) => (
+        <div className="grid  grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-8 mb-[50px]">
+          {dataPosts?.posts?.map((post) => (
             <PostCard key={post._id} post={post} />
           ))}
         </div>
-        <div className="w-full flex">
-          <Button variant="outlined" className="mt-[50px] mb-[100px] mx-auto">
-            Show More
-          </Button>
-        </div>
+        {postLimit > 0 && (
+          <div className="w-full flex">
+            <Button
+              onClick={handleLoadMore}
+              variant="outlined"
+              className=" mb-[100px] mx-auto"
+            >
+              {isLoading ? <Spinner /> : "Show More"}
+            </Button>
+          </div>
+        )}
       </section>
     </div>
   );
