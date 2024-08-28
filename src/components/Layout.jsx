@@ -7,7 +7,7 @@ function Layout() {
     <div>
       <div className="max-w-[1400px] mx-auto px-[24px]">
         <Header />
-        <main>
+        <main className="min-h-[calc(100vh-572px)]">
           <Outlet />
         </main>
       </div>

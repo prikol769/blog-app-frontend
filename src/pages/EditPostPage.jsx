@@ -2,6 +2,7 @@ import {
   Button,
   ButtonGroup,
   IconButton,
+  Spinner,
   Textarea,
   Typography,
 } from "@material-tailwind/react";
@@ -70,10 +71,12 @@ const EditPostPage = () => {
   const [previewCard, setPreviewCard] = useState(false);
   const [previewArticle, setPreviewArticle] = useState(false);
   const [previewFullArticle, setPreviewFullArticle] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
+        setIsLoading(true);
         const { data: response } = await axios.get(
           `http://localhost:5000/api/posts/${id}`
         );
@@ -84,6 +87,8 @@ const EditPostPage = () => {
         setContent(content);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchPost();
@@ -110,6 +115,8 @@ const EditPostPage = () => {
       console.log(error);
     }
   };
+
+  if (isLoading) return <Spinner className="h-12 w-12 m-auto" />;
 
   return (
     <div className="mb-10 relative">
