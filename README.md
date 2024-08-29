@@ -1,8 +1,43 @@
-# React + Vite
+<div align="center">
+  <div>
+   <img src="https://img.shields.io/badge/-Vite-black?style=for-the-badge&logoColor=white&logo=vite&color=646CFF" alt="vite" />
+       <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="react.js" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
+     <img src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" />
+  </div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  <h3 align="center">MK Blog Frontend</h3>
 
-Currently, two official plugins are available:
+   <div align="center">
+      <a href="https://mykyta-krumalenko.lol" target="_blank"><b>https://mykyta-krumalenko.lol</b></a>
+    </div>
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 <a name="table">Table of Contents</a>
+
+1. 🤖 [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+
+## <a name="introduction">🤖 Introduction</a>
+
+MK Blog is a dynamic and responsive blogging platform built with React.js, Material UI, and Tailwind CSS, designed to provide users with a seamless experience for creating, editing, and managing blog posts and user accounts.
+
+## <a name="tech-stack">⚙️ Tech Stack</a>
+
+- Vite
+- React
+- Material-tailwind
+- TailwindCSS
+
+## <a name="features">🔋 Features</a>
+
+👉 **Authentication and Authorization**: Secure user access with registration, login, and route protection.
+
+👉 **Post Management**: Users can create new blog posts, edit existing ones, and delete posts. The app provides an intuitive editor for writing and formatting content.
+
+👉 **Profile Management**: Each user has a dedicated profile page where they can view their posts, edit their profile details, and manage their account settings.
+
+👉 **Responsive Design**: The app is fully responsive and provides a smooth user experience across devices, from desktops to mobile phones.
+
+👉 **Error Handling**: The app includes user-friendly error messages and a custom 404 page for handling unrecognized routes.
