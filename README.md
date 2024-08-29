@@ -9,8 +9,12 @@
   <h3 align="center">MK Blog Frontend</h3>
 
    <div align="center">
-      <a href="https://mykyta-krumalenko.lol" target="_blank"><b>https://mykyta-krumalenko.lol</b></a>
+     Preview: <a href="https://mykyta-krumalenko.lol" target="_blank"><b>https://mykyta-krumalenko.lol</b></a>
     </div>
+    <div align="center">
+      Backend: <a href="https://github.com/prikol769/blog-app-backend" target="_blank"><b>https://github.com/prikol769/blog-app-backend</b></a>
+    </div>
+
 </div>
 
 ## 📋 <a name="table">Table of Contents</a>
@@ -29,6 +33,9 @@ MK Blog is a dynamic and responsive blogging platform built with React.js, Mater
 - React
 - Material-tailwind
 - TailwindCSS
+- Node.js
+- Express
+- MongoDB
 
 ## <a name="features">🔋 Features</a>
 
