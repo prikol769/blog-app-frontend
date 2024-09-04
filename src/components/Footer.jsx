@@ -10,8 +10,8 @@ const Footer = () => {
   return (
     <footer className="bg-[#E8E8EA] w-full">
       <div className="px-6 max-w-[1400px] mx-auto">
-        <div className="py-16 grid grid-cols-[2fr_1fr_1fr] lg:grid-cols-[2fr_1fr_1fr_2fr] ">
-          <div className="w-[280px]">
+        <div className="py-16 grid grid-cols-[1fr_1fr] md:grid-cols-[2fr_1fr_1fr] lg:grid-cols-[2fr_1fr_1fr_2fr] ">
+          <div className="w-[280px] col-start-1 col-end-4 sm:col-end-2 mb-6 sm:mb-0">
             <p className="text-[#181A2A] mb-5 text-lg font-semibold">About</p>
             <p className="text-[#696A75]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -30,7 +30,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-2 text-[#3B3C4A]">
+          <div className="flex flex-col gap-2 text-[#3B3C4A] mx-4">
             <p className="text-[#181A2A] mb-3 text-lg font-semibold">
               Quick Link
             </p>
@@ -42,7 +42,7 @@ const Footer = () => {
             <Link>Contact</Link>
           </div>
 
-          <div className="flex flex-col gap-2 text-[#3B3C4A]">
+          <div className="flex flex-col gap-2 text-[#3B3C4A] mx-4">
             <p className="text-[#181A2A] mb-3 text-lg font-semibold">
               Category
             </p>
@@ -82,7 +82,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex justify-between items-center w-full border-t-[1px] border-[#DCDDDF] py-8">
-          <div className=" ">
+          <div className="mr-5">
             <img src="/Logo.png" />
           </div>
           <div className="flex gap-8 text-[#3B3C4A]">
