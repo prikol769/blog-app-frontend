@@ -26,7 +26,7 @@ export function PostCard({
 
   const upperCaseTitle = title.charAt(0).toUpperCase() + title.slice(1);
   return (
-    <Card className="pt-10 max-w-[600px] w-auto min-w-96 shadow-[0px_4px_6px_1px_rgb(0,0,0,0.1)] min-h-[480px] max-h-[480px] justify-between">
+    <Card className="pt-10 max-w-[600px] w-auto min-w-60 sm:min-w-96 shadow-[0px_4px_6px_1px_rgb(0,0,0,0.1)] min-h-[480px] max-h-[480px] justify-between">
       <CardHeader color="blue-gray" className="relative h-56">
         <img
           src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
