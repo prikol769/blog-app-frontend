@@ -39,7 +39,7 @@ const SignUpPage = () => {
       {error && <AlertCustomCloseIcon message={error} setError={setError} />}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-7 w-[500px] mb-[60px]"
+        className="flex flex-col gap-7 w-[500px] mb-[20px] md:mb-[60px]"
       >
         <div className="text-center">
           <p className=" text-5xl font-extrabold mb-5">Sign Up</p>
