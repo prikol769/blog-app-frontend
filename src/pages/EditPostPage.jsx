@@ -172,7 +172,7 @@ const EditPostPage = () => {
           }`}
           onSubmit={updatePost}
         >
-          <div className="flex gap-6">
+          <div className="flex gap-6 flex-col sm:flex-row">
             <FormInput
               label="Title"
               maxLength="200"
