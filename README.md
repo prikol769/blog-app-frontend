@@ -7,7 +7,7 @@
   </div>
 
   <h3 align="center">MK Blog Frontend</h3>
-
+  <div>(When you first open the site, please wait for about 1 minute for the backend (server) to load. This is due to free hosting.)</div>
    <div align="center">
      Preview: <a href="https://mykyta-krumalenko.lol" target="_blank"><b>https://mykyta-krumalenko.lol</b></a>
     </div>
